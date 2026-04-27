@@ -1,2 +1,30 @@
-# Favicon-Forge
-Upload once. Generate everywhere.  Favicon Forge is a lightweight FastAPI web app that takes a single image and automatically generates a complete favicon set for modern web apps.  No more manual resizing. No more sketchy generators. Just clean, fast, developer-friendly favicon creation.
+# Favicon Forge
+
+Upload once. Generate everywhere.
+
+Favicon Forge is a polished FastAPI utility that takes one PNG or JPG/JPEG image and generates a complete favicon pack for modern web apps.
+
+## Features
+
+- Validates image type and upload size.
+- Center-crops uploads to a square with Pillow.
+- Exports ICO, browser PNG favicons, Apple touch icon, Android Chrome icons, and `site.webmanifest`.
+- Shows a generated preview, copyable HTML snippet, and ZIP download.
+- Uses Jinja2 templates and plain CSS.
+
+## Run locally
+
+```bash
+python -m venv .venv
+.venv\Scripts\activate
+pip install -r requirements.txt
+uvicorn app.main:app --reload
+```
+
+Open `http://127.0.0.1:8000`.
+
+## Test
+
+```bash
+pytest
+```

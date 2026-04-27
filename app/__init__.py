@@ -1,0 +1,1 @@
+"""Favicon Forge application package."""

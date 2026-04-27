@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Favicon Forge</title>
+    <link rel="stylesheet" href="{{ url_for('static', path='/styles.css') }}">
+  </head>
+  <body>
+    <main class="shell">
+      <section class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow">Developer favicon utility</p>
+          <h1>Favicon Forge</h1>
+          <p class="tagline">Upload once. Generate everywhere.</p>
+        </div>
+        <div class="forge-mark" aria-hidden="true">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </section>
+
+      <section class="workspace" aria-labelledby="upload-title">
+        <div class="panel upload-panel">
+          <h2 id="upload-title">Create a favicon pack</h2>
+          <p class="muted">PNG, JPG, or JPEG. Files are center-cropped to a square and exported for modern browser, Apple, and Android surfaces.</p>
+
+          {% if error %}
+            <div class="alert" role="alert">{{ error }}</div>
+          {% endif %}
+
+          <form action="/generate" method="post" enctype="multipart/form-data" class="upload-form">
+            <label class="drop-zone">
+              <input type="file" name="file" accept=".png,.jpg,.jpeg,image/png,image/jpeg" required>
+              <span class="drop-icon">+</span>
+              <span class="drop-title">Choose an image</span>
+              <span class="drop-help">Maximum {{ max_upload_mb }} MB</span>
+            </label>
+
+            <div class="field-grid">
+              <label>
+                <span>App name</span>
+                <input type="text" name="app_name" value="Favicon Forge">
+              </label>
+              <label>
+                <span>Short name</span>
+                <input type="text" name="short_name" value="Forge">
+              </label>
+              <label>
+                <span>Theme color</span>
+                <input type="text" name="theme_color" value="#38bdf8" pattern="#[0-9a-fA-F]{6}">
+              </label>
+              <label>
+                <span>Background color</span>
+                <input type="text" name="background_color" value="#020617" pattern="#[0-9a-fA-F]{6}">
+              </label>
+            </div>
+
+            <button type="submit" class="primary-button">Generate favicons</button>
+          </form>
+        </div>
+
+        <aside class="panel preview-panel" aria-label="Generated files preview">
+          <div class="preview-stack">
+            <div class="preview-tile large"></div>
+            <div class="preview-row">
+              <div class="preview-tile small"></div>
+              <div class="preview-tile medium"></div>
+              <div class="preview-tile small dim"></div>
+            </div>
+          </div>
+          <h2>Complete output</h2>
+          <ul class="file-list">
+            <li>favicon.ico</li>
+            <li>16x16, 32x32, 192x192, 512x512 PNG</li>
+            <li>Apple touch icon</li>
+            <li>Android Chrome icons</li>
+            <li>site.webmanifest</li>
+          </ul>
+        </aside>
+      </section>
+    </main>
+  </body>
+</html>

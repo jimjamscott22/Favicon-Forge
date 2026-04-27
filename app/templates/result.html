@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Your favicon pack - Favicon Forge</title>
+    <link rel="stylesheet" href="{{ url_for('static', path='/styles.css') }}">
+  </head>
+  <body>
+    <main class="shell">
+      <section class="result-header">
+        <div>
+          <p class="eyebrow">Pack generated</p>
+          <h1>Favicon Forge</h1>
+          <p class="tagline">Upload once. Generate everywhere.</p>
+        </div>
+        <a class="ghost-link" href="/">Create another</a>
+      </section>
+
+      <section class="workspace result-grid">
+        <div class="panel result-panel">
+          <div class="generated-preview">
+            <img src="{{ preview_url }}" alt="Generated favicon preview">
+          </div>
+          <div>
+            <h2>Ready to ship</h2>
+            <p class="muted">Your ZIP includes browser icons, Apple and Android icons, and the generated manifest.</p>
+            <a class="primary-button button-link" href="{{ zip_url }}">Download ZIP</a>
+          </div>
+        </div>
+
+        <div class="panel files-panel">
+          <h2>Generated files</h2>
+          <ul class="file-list two-column">
+            {% for file in files %}
+              <li>{{ file }}</li>
+            {% endfor %}
+          </ul>
+        </div>
+      </section>
+
+      <section class="panel snippet-panel">
+        <div class="snippet-heading">
+          <div>
+            <h2>HTML snippet</h2>
+            <p class="muted">Paste this inside your document head.</p>
+          </div>
+          <button class="secondary-button" type="button" data-copy>Copy</button>
+        </div>
+        <pre><code id="snippet">{{ html_snippet }}</code></pre>
+      </section>
+    </main>
+    <script>
+      const copyButton = document.querySelector("[data-copy]");
+      const snippet = document.querySelector("#snippet");
+
+      copyButton?.addEventListener("click", async () => {
+        await navigator.clipboard.writeText(snippet.textContent);
+        copyButton.textContent = "Copied";
+        setTimeout(() => {
+          copyButton.textContent = "Copy";
+        }, 1600);
+      });
+    </script>
+  </body>
+</html>
