@@ -1,0 +1,25 @@
+[project]
+name = "favicon-forge"
+version = "0.1.0"
+description = "A FastAPI utility that generates complete favicon packs from one uploaded image."
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "fastapi==0.115.6",
+    "jinja2==3.1.5",
+    "pillow==11.1.0",
+    "python-multipart==0.0.20",
+    "uvicorn[standard]==0.34.0",
+]
+
+[dependency-groups]
+dev = [
+    "httpx==0.28.1",
+    "pytest==8.3.4",
+]
+
+[tool.uv]
+package = false
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

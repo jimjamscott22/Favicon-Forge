@@ -14,11 +14,11 @@ Favicon Forge is a polished FastAPI utility that takes one PNG or JPG/JPEG image
 
 ## Run locally
 
+Install `uv` first if you do not already have it.
+
 ```bash
-python -m venv .venv
-.venv\Scripts\activate
-pip install -r requirements.txt
-uvicorn app.main:app --reload
+uv sync
+uv run uvicorn app.main:app --reload
 ```
 
 Open `http://127.0.0.1:8000`.
@@ -26,5 +26,5 @@ Open `http://127.0.0.1:8000`.
 ## Test
 
 ```bash
-pytest
+uv run pytest
 ```
